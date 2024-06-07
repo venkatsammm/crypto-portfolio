@@ -121,21 +121,48 @@ const App = () => {
     alignItems: 'center'
   };
 
+  // Media query for mobile responsiveness
+  const mediaQuery = `
+    @media (max-width: 768px) {
+      .input-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .input-style {
+        margin: 0 0 10px 0;
+      }
+
+      .table-style {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .table-style th,
+      .table-style td {
+        padding: 5px;
+      }
+    }
+  `;
+
   return (
     <div style={appStyle}>
+      <style>{mediaQuery}</style>
       <h1 style={headerStyle}>My Crypto Portfolio</h1>
-      <div style={inputContainerStyle}>
+      <div style={inputContainerStyle} className="input-container">
         <input
           type="text"
           value={address}
           onChange={handleInputChange}
           placeholder="Enter Wallet Address"
           style={inputStyle}
+          className="input-style"
         />
         <button onClick={handleButtonClick} style={buttonStyle}>Fetch Assets</button>
       </div>
       <div style={responsiveStyle}>
-        <table style={tableStyle}>
+        <table style={tableStyle} className="table-style">
           <thead>
             <tr>
               <th style={thStyle}>Logo</th>
